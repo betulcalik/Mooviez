@@ -1,0 +1,47 @@
+//
+//  UpcomingMoviesCollectionViewCell.swift
+//  mooviez
+//
+//  Created by Betül Çalık on 27.02.2022.
+//
+
+import UIKit
+
+class UpcomingMoviesCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - UI Components
+    private lazy var movieImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    // MARK: - Variables
+    static let identifier = "UpcomingMoviesCollectionViewCell"
+    
+    // MARK: - Initialization
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        movieImageView.frame = contentView.bounds
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        movieImageView.image = nil
+    }
+    
+    // MARK: - Setup UI
+    private func setupUI() {
+        contentView.addSubview(movieImageView)
+    }
+}

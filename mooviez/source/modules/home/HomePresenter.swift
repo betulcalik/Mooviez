@@ -20,10 +20,23 @@ final class HomePresenter: HomePresenterProtocol {
         self.view = view
         self.interactor = interactor
         self.router = router
+        self.interactor.delegate = self
     }
     
     func load() {
-        
+        interactor.load()
     }
     
+}
+
+// MARK: - Home Interactor Delegate
+extension HomePresenter: HomeInteractorDelegate {
+    
+    func handleOutput(_ output: HomeInteractorOutput) {
+        switch output {
+        case .showUpcomingMovies(let upcomingMovieResponse):
+            view?.handleOutput(.showUpcomingMovies(upcomingMovieResponse))
+        }
+    }
+
 }
