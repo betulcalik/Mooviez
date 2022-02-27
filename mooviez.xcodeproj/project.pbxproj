@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		62B18D4027CB952900498EC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D3F27CB952900498EC2 /* AppDelegate.swift */; };
 		62B18D4227CB952900498EC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D4127CB952900498EC2 /* SceneDelegate.swift */; };
-		62B18D4427CB952900498EC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D4327CB952900498EC2 /* ViewController.swift */; };
-		62B18D4727CB952900498EC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B18D4527CB952900498EC2 /* Main.storyboard */; };
 		62B18D4927CB952A00498EC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B18D4827CB952A00498EC2 /* Assets.xcassets */; };
 		62B18D4C27CB952A00498EC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B18D4A27CB952A00498EC2 /* LaunchScreen.storyboard */; };
+		62B18D5A27CB95F500498EC2 /* HomeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D5927CB95F500498EC2 /* HomeProtocols.swift */; };
+		62B18D5C27CB960400498EC2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D5B27CB960400498EC2 /* HomeViewController.swift */; };
+		62B18D5E27CB961000498EC2 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D5D27CB961000498EC2 /* HomeInteractor.swift */; };
+		62B18D6027CB961800498EC2 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D5F27CB961800498EC2 /* HomePresenter.swift */; };
+		62B18D6227CB962000498EC2 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D6127CB962000498EC2 /* HomeRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		62B18D3C27CB952900498EC2 /* mooviez.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mooviez.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B18D3F27CB952900498EC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62B18D4127CB952900498EC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		62B18D4327CB952900498EC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		62B18D4627CB952900498EC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62B18D4827CB952A00498EC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62B18D4B27CB952A00498EC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62B18D4D27CB952A00498EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62B18D5927CB95F500498EC2 /* HomeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProtocols.swift; sourceTree = "<group>"; };
+		62B18D5B27CB960400498EC2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		62B18D5D27CB961000498EC2 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		62B18D5F27CB961800498EC2 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		62B18D6127CB962000498EC2 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,66 @@
 		62B18D3E27CB952900498EC2 /* mooviez */ = {
 			isa = PBXGroup;
 			children = (
+				62B18D5327CB956900498EC2 /* app */,
+				62B18D5627CB95A100498EC2 /* source */,
+				62B18D5527CB958C00498EC2 /* media */,
+				62B18D5427CB957800498EC2 /* supporting-files */,
+			);
+			path = mooviez;
+			sourceTree = "<group>";
+		};
+		62B18D5327CB956900498EC2 /* app */ = {
+			isa = PBXGroup;
+			children = (
 				62B18D3F27CB952900498EC2 /* AppDelegate.swift */,
 				62B18D4127CB952900498EC2 /* SceneDelegate.swift */,
-				62B18D4327CB952900498EC2 /* ViewController.swift */,
-				62B18D4527CB952900498EC2 /* Main.storyboard */,
-				62B18D4827CB952A00498EC2 /* Assets.xcassets */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		62B18D5427CB957800498EC2 /* supporting-files */ = {
+			isa = PBXGroup;
+			children = (
 				62B18D4A27CB952A00498EC2 /* LaunchScreen.storyboard */,
 				62B18D4D27CB952A00498EC2 /* Info.plist */,
 			);
-			path = mooviez;
+			path = "supporting-files";
+			sourceTree = "<group>";
+		};
+		62B18D5527CB958C00498EC2 /* media */ = {
+			isa = PBXGroup;
+			children = (
+				62B18D4827CB952A00498EC2 /* Assets.xcassets */,
+			);
+			path = media;
+			sourceTree = "<group>";
+		};
+		62B18D5627CB95A100498EC2 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				62B18D5727CB95AB00498EC2 /* modules */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		62B18D5727CB95AB00498EC2 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				62B18D5827CB95EC00498EC2 /* home */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		62B18D5827CB95EC00498EC2 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				62B18D5927CB95F500498EC2 /* HomeProtocols.swift */,
+				62B18D5B27CB960400498EC2 /* HomeViewController.swift */,
+				62B18D5D27CB961000498EC2 /* HomeInteractor.swift */,
+				62B18D5F27CB961800498EC2 /* HomePresenter.swift */,
+				62B18D6127CB962000498EC2 /* HomeRouter.swift */,
+			);
+			path = home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +184,6 @@
 			files = (
 				62B18D4C27CB952A00498EC2 /* LaunchScreen.storyboard in Resources */,
 				62B18D4927CB952A00498EC2 /* Assets.xcassets in Resources */,
-				62B18D4727CB952900498EC2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +194,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62B18D4427CB952900498EC2 /* ViewController.swift in Sources */,
 				62B18D4027CB952900498EC2 /* AppDelegate.swift in Sources */,
+				62B18D5A27CB95F500498EC2 /* HomeProtocols.swift in Sources */,
+				62B18D6227CB962000498EC2 /* HomeRouter.swift in Sources */,
 				62B18D4227CB952900498EC2 /* SceneDelegate.swift in Sources */,
+				62B18D6027CB961800498EC2 /* HomePresenter.swift in Sources */,
+				62B18D5E27CB961000498EC2 /* HomeInteractor.swift in Sources */,
+				62B18D5C27CB960400498EC2 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		62B18D4527CB952900498EC2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				62B18D4627CB952900498EC2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		62B18D4A27CB952A00498EC2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -288,10 +340,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = mooviez/Info.plist;
+				INFOPLIST_FILE = "mooviez/supporting-files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -315,10 +366,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = mooviez/Info.plist;
+				INFOPLIST_FILE = "mooviez/supporting-files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
