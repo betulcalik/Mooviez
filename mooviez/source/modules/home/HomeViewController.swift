@@ -59,6 +59,7 @@ extension HomeViewController: HomeViewProtocol {
         switch output {
         case .showUpcomingMovies(let result):
             self.upcomingMovies = result
+            upcomingMoviesCollectionView?.reloadData()
         }
     }
     
@@ -72,7 +73,7 @@ extension HomeViewController: UICollectionViewDelegate {
 extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return upcomingMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
