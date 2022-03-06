@@ -10,6 +10,12 @@ import UIKit
 class HomeViewController: UIViewController {
 
     // MARK: - UI Components
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = Fonts.montserratBold(size: 14)
+        return label
+    }()
+    
     private var upcomingMoviesCollectionView: UICollectionView?
     
     // MARK: - Variables
@@ -37,16 +43,15 @@ class HomeViewController: UIViewController {
     
     private func setupUpcomingMoviesCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         upcomingMoviesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
         guard let upcomingMoviesCollectionView = upcomingMoviesCollectionView else { return }
         upcomingMoviesCollectionView.register(UpcomingMoviesCollectionViewCell.self,
-                                              forCellWithReuseIdentifier: UpcomingMoviesCollectionViewCell.identifier)
+                                        forCellWithReuseIdentifier: UpcomingMoviesCollectionViewCell.identifier)
         upcomingMoviesCollectionView.delegate = self
         upcomingMoviesCollectionView.dataSource = self
+        upcomingMoviesCollectionView.backgroundColor = UIColor.clear
         upcomingMoviesCollectionView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 200)
-        
         view.addSubview(upcomingMoviesCollectionView)
     }
 
