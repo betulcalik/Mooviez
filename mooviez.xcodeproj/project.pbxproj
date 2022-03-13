@@ -13,7 +13,7 @@
 		625F0ECA27D54CD400598474 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 625F0EC927D54CD400598474 /* Montserrat-Regular.ttf */; };
 		625F0ECC27D54CED00598474 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 625F0ECB27D54CED00598474 /* Montserrat-Light.ttf */; };
 		625F0ECE27D54CFB00598474 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 625F0ECD27D54CFB00598474 /* Montserrat-Medium.ttf */; };
-		625F0ED127D54D2800598474 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625F0ED027D54D2800598474 /* Fonts.swift */; };
+		625F8A6427DE6DDD0003D2A4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 625F8A6327DE6DDD0003D2A4 /* Localizable.strings */; };
 		62B18D4027CB952900498EC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D3F27CB952900498EC2 /* AppDelegate.swift */; };
 		62B18D4227CB952900498EC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D4127CB952900498EC2 /* SceneDelegate.swift */; };
 		62B18D4927CB952A00498EC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B18D4827CB952A00498EC2 /* Assets.xcassets */; };
@@ -27,6 +27,7 @@
 		62B18D6727CBAEB000498EC2 /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D6627CBAEB000498EC2 /* MovieManager.swift */; };
 		62B18D6A27CBAFF300498EC2 /* UpcomingMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B18D6927CBAFF300498EC2 /* UpcomingMovie.swift */; };
 		62C46CE727CC07DB00B88963 /* UpcomingMoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C46CE627CC07DB00B88963 /* UpcomingMoviesCollectionViewCell.swift */; };
+		62F8E5E627DE71DD00BE6178 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8E5E527DE71DD00BE6178 /* R.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +38,7 @@
 		625F0EC927D54CD400598474 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		625F0ECB27D54CED00598474 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		625F0ECD27D54CFB00598474 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
-		625F0ED027D54D2800598474 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		625F8A6327DE6DDD0003D2A4 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		62B18D3C27CB952900498EC2 /* mooviez.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mooviez.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B18D3F27CB952900498EC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62B18D4127CB952900498EC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		62B18D6627CBAEB000498EC2 /* MovieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
 		62B18D6927CBAFF300498EC2 /* UpcomingMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMovie.swift; sourceTree = "<group>"; };
 		62C46CE627CC07DB00B88963 /* UpcomingMoviesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesCollectionViewCell.swift; sourceTree = "<group>"; };
+		62F8E5E527DE71DD00BE6178 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		862063C211A1FA6DF9B13C39 /* Pods-mooviez.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mooviez.debug.xcconfig"; path = "Target Support Files/Pods-mooviez/Pods-mooviez.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,7 +102,7 @@
 		625F0ECF27D54D0900598474 /* utilities */ = {
 			isa = PBXGroup;
 			children = (
-				625F0ED027D54D2800598474 /* Fonts.swift */,
+				625F8A6327DE6DDD0003D2A4 /* Localizable.strings */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -146,6 +148,7 @@
 		62B18D5427CB957800498EC2 /* supporting-files */ = {
 			isa = PBXGroup;
 			children = (
+				62F8E5E527DE71DD00BE6178 /* R.generated.swift */,
 				62B18D4A27CB952A00498EC2 /* LaunchScreen.storyboard */,
 				62B18D4D27CB952A00498EC2 /* Info.plist */,
 			);
@@ -227,6 +230,7 @@
 			buildPhases = (
 				41862C166391C795668F5DF6 /* [CP] Check Pods Manifest.lock */,
 				62B18D3827CB952900498EC2 /* Sources */,
+				62F8E5E427DE70F600BE6178 /* ShellScript */,
 				62B18D3927CB952900498EC2 /* Frameworks */,
 				62B18D3A27CB952900498EC2 /* Resources */,
 				E8A70DABE9D14609077378CB /* [CP] Embed Pods Frameworks */,
@@ -283,6 +287,7 @@
 				625F0EC627D54CB200598474 /* Montserrat-Italic.ttf in Resources */,
 				625F0ECE27D54CFB00598474 /* Montserrat-Medium.ttf in Resources */,
 				62B18D4C27CB952A00498EC2 /* LaunchScreen.storyboard in Resources */,
+				625F8A6427DE6DDD0003D2A4 /* Localizable.strings in Resources */,
 				625F0ECA27D54CD400598474 /* Montserrat-Regular.ttf in Resources */,
 				62B18D4927CB952A00498EC2 /* Assets.xcassets in Resources */,
 			);
@@ -313,6 +318,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		62F8E5E427DE70F600BE6178 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		E8A70DABE9D14609077378CB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -341,8 +365,8 @@
 				62B18D4027CB952900498EC2 /* AppDelegate.swift in Sources */,
 				62B18D5A27CB95F500498EC2 /* HomeProtocols.swift in Sources */,
 				62C46CE727CC07DB00B88963 /* UpcomingMoviesCollectionViewCell.swift in Sources */,
-				625F0ED127D54D2800598474 /* Fonts.swift in Sources */,
 				62B18D6227CB962000498EC2 /* HomeRouter.swift in Sources */,
+				62F8E5E627DE71DD00BE6178 /* R.generated.swift in Sources */,
 				62B18D4227CB952900498EC2 /* SceneDelegate.swift in Sources */,
 				62B18D6027CB961800498EC2 /* HomePresenter.swift in Sources */,
 				62B18D5E27CB961000498EC2 /* HomeInteractor.swift in Sources */,

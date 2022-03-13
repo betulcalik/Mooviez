@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UpcomingMoviesCollectionViewCell: UICollectionViewCell {
     
@@ -14,11 +15,13 @@ class UpcomingMoviesCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 6
         return imageView
     }()
     
     // MARK: - Variables
     static let identifier = "UpcomingMoviesCollectionViewCell"
+    private let baseImageURL = "https://image.tmdb.org/t/p/w300"
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -43,5 +46,17 @@ class UpcomingMoviesCollectionViewCell: UICollectionViewCell {
     // MARK: - Setup UI
     private func setupUI() {
         contentView.addSubview(movieImageView)
+    }
+    
+    private func setImage() {
+        
+    }
+    
+    // MARK: - Configure cell
+    public func configure(with model: UpcomingMovie) {
+        guard let posterPath = model.posterPath else { return }
+        let urlString = baseImageURL + posterPath
+        let url = URL(string: urlString)
+        movieImageView.kf.setImage(with: url)
     }
 }

@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  mooviez
+
+  Created by Betül Çalık on 13.03.2022.
+  
+*/
+
+// Home View
+"title_upcoming_movies" = "Upcoming Movies";
