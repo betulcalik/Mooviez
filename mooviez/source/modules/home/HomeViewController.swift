@@ -34,6 +34,7 @@ class HomeViewController: UIViewController {
     // MARK: - Variables
     var presenter: HomePresenterProtocol?
     private var upcomingMoviesArray: [UpcomingMovie] = []
+    private var minimumLineSpacing = 25.0
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -119,6 +120,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 25.0
+        return minimumLineSpacing
     }
 }
