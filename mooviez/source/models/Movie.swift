@@ -1,5 +1,5 @@
 //
-//  UpcomingMovie.swift
+//  Movie.swift
 //  mooviez
 //
 //  Created by Betül Çalık on 27.02.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UpcomingMovie: Codable {
+struct Movie: Codable {
     let id: Int
     let posterPath: String?
     let overview: String
@@ -25,7 +25,7 @@ struct UpcomingMovie: Codable {
     }
 }
 
-struct UpcomingMovieResponse: Codable {
+struct MovieResponse: Codable {
     let page: Int
-    let results: [UpcomingMovie]
+    let results: [Movie]
 }

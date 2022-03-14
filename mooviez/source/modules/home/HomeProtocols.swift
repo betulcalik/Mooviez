@@ -20,6 +20,8 @@ protocol HomeInteractorProtocol: AnyObject {
     var presenter: HomePresenterProtocol? { get set }
     
     func load()
+    func getUpcomingMovies()
+    func getTopRatedMovies()
 }
 
 protocol HomeInteractorDelegate: AnyObject {
@@ -27,7 +29,8 @@ protocol HomeInteractorDelegate: AnyObject {
 }
 
 enum HomeInteractorOutput {
-    case showUpcomingMovies([UpcomingMovie])
+    case showUpcomingMovies([Movie])
+    case showTopRatedMovies([Movie])
 }
 
 // MARK: - Presenter
@@ -36,7 +39,8 @@ protocol HomePresenterProtocol: AnyObject {
 }
 
 enum HomePresenterOutput {
-    case showUpcomingMovies([UpcomingMovie])
+    case showUpcomingMovies([Movie])
+    case showTopRatedMovies([Movie])
 }
 
 // MARK: - Router

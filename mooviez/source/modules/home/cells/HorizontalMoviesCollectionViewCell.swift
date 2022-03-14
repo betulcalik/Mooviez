@@ -1,5 +1,5 @@
 //
-//  UpcomingMoviesCollectionViewCell.swift
+//  HorizontalMoviesCollectionViewCell.swift
 //  mooviez
 //
 //  Created by Betül Çalık on 27.02.2022.
@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class UpcomingMoviesCollectionViewCell: UICollectionViewCell {
+class HorizontalMoviesCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
     private lazy var movieImageView: UIImageView = {
@@ -47,13 +47,9 @@ class UpcomingMoviesCollectionViewCell: UICollectionViewCell {
     private func setupUI() {
         contentView.addSubview(movieImageView)
     }
-    
-    private func setImage() {
-        
-    }
-    
+
     // MARK: - Configure cell
-    public func configure(with model: UpcomingMovie) {
+    public func configure(with model: Movie) {
         guard let posterPath = model.posterPath else { return }
         let urlString = baseImageURL + posterPath
         let url = URL(string: urlString)

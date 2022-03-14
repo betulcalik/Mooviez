@@ -296,10 +296,25 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 2 localization keys.
     struct localizable {
+      /// Value: Top Rated Movies
+      static let title_top_rated_movies = Rswift.StringResource(key: "title_top_rated_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Upcoming Movies
       static let title_upcoming_movies = Rswift.StringResource(key: "title_upcoming_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+
+      /// Value: Top Rated Movies
+      static func title_top_rated_movies(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("title_top_rated_movies", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "title_top_rated_movies"
+        }
+
+        return NSLocalizedString("title_top_rated_movies", bundle: bundle, comment: "")
+      }
 
       /// Value: Upcoming Movies
       static func title_upcoming_movies(preferredLanguages: [String]? = nil) -> String {

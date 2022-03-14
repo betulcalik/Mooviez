@@ -16,10 +16,24 @@ final class MovieManager {
     private let apiKey = "7bc13f9bf8f8b7b8042cbca270f41011"
     private let language = "en-US"
     
-    func getUpcomingMovies(completionHandler: @escaping (Result<[UpcomingMovie], Error>) -> Void) {
+    func getUpcomingMovies(completionHandler: @escaping (Result<[Movie], Error>) -> Void) {
         let urlString = baseURL + "upcoming?api_key=" + apiKey + "&language=" + language + "&page=1"
         
-        apiManager.getRequest(urlString, decodable: UpcomingMovieResponse.self) { (result) in
+        apiManager.getRequest(urlString, decodable: MovieResponse.self) { (result) in
+            switch result {
+            case .success(let data):
+                completionHandler(.success(data.results))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+
+    }
+
+    func getTopRatedMovies(completionHandler: @escaping (Result<[Movie], Error>) -> Void) {
+        let urlString = baseURL + "top_rated?api_key=" + apiKey + "&language" + language + "&page=1"
+        
+        apiManager.getRequest(urlString, decodable: MovieResponse.self) { (result) in
             switch result {
             case .success(let data):
                 completionHandler(.success(data.results))

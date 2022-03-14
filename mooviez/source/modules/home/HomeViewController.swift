@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = R.font.montserratBold(size: 34)
+        label.font = R.font.montserratBold(size: 30)
         label.text = R.string.localizable.title_upcoming_movies()
         label.textColor = R.color.titleColor()
         return label
@@ -31,9 +31,31 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    private lazy var topRatedTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = R.font.montserratBold(size: 30)
+        label.text = R.string.localizable.title_top_rated_movies()
+        label.textColor = R.color.titleColor()
+        return label
+    }()
+    
+    private lazy var topRatedMovies: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.clear
+        view.delegate = self
+        view.dataSource = self
+        return view
+    }()
+    
     // MARK: - Variables
     var presenter: HomePresenterProtocol?
-    private var upcomingMoviesArray: [UpcomingMovie] = []
+    private var upcomingMoviesArray: [Movie] = []
+    private var topRatedMoviesArray: [Movie] = []
     private var minimumLineSpacing = 25.0
     
     // MARK: - Life Cycle
@@ -46,8 +68,10 @@ class HomeViewController: UIViewController {
     private func setupUI() {
         presenter?.load()
         setView()
-        addTitleView()
+        addUpcomingTitle()
         addUpcomingMovies()
+        addTopRatedTitle()
+        addTopRatedMovies()
     }
     
     private func setView() {
@@ -55,7 +79,7 @@ class HomeViewController: UIViewController {
         setUpcomingMovies()
     }
     
-    private func addTitleView() {
+    private func addUpcomingTitle() {
         view.addSubview(upcomingTitleLabel)
         NSLayoutConstraint.activate([
             upcomingTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -65,8 +89,10 @@ class HomeViewController: UIViewController {
     }
     
     private func setUpcomingMovies() {
-        upcomingMovies.register(UpcomingMoviesCollectionViewCell.self,
-                                forCellWithReuseIdentifier: UpcomingMoviesCollectionViewCell.identifier)
+        upcomingMovies.register(HorizontalMoviesCollectionViewCell.self,
+                                forCellWithReuseIdentifier: HorizontalMoviesCollectionViewCell.identifier)
+        topRatedMovies.register(HorizontalMoviesCollectionViewCell.self,
+                                forCellWithReuseIdentifier: HorizontalMoviesCollectionViewCell.identifier)
     }
     
     private func addUpcomingMovies() {
@@ -79,6 +105,26 @@ class HomeViewController: UIViewController {
             upcomingMovies.heightAnchor.constraint(equalToConstant: height)
         ])
     }
+    
+    private func addTopRatedTitle() {
+        view.addSubview(topRatedTitleLabel)
+        NSLayoutConstraint.activate([
+            topRatedTitleLabel.topAnchor.constraint(equalTo: upcomingMovies.bottomAnchor, constant: 20),
+            topRatedTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            topRatedTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+        ])
+    }
+    
+    private func addTopRatedMovies() {
+        let height = view.frame.height / 6
+        view.addSubview(topRatedMovies)
+        NSLayoutConstraint.activate([
+            topRatedMovies.topAnchor.constraint(equalTo: topRatedTitleLabel.bottomAnchor, constant: 20),
+            topRatedMovies.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            topRatedMovies.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            topRatedMovies.heightAnchor.constraint(equalToConstant: height)
+        ])
+    }
 }
 
 // MARK: - Home View Protocol
@@ -89,6 +135,9 @@ extension HomeViewController: HomeViewProtocol {
         case .showUpcomingMovies(let result):
             self.upcomingMoviesArray = result
             upcomingMovies.reloadData()
+        case .showTopRatedMovies(let result):
+            self.topRatedMoviesArray = result
+            topRatedMovies.reloadData()
         }
     }
     
@@ -101,13 +150,25 @@ extension HomeViewController: UICollectionViewDelegate {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return upcomingMoviesArray.count
+        if collectionView == self.upcomingMovies {
+            return upcomingMoviesArray.count
+        } else if collectionView == self.topRatedMovies {
+            return topRatedMoviesArray.count
+        }
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = upcomingMovies.dequeueReusableCell(withReuseIdentifier: UpcomingMoviesCollectionViewCell.identifier, for: indexPath) as? UpcomingMoviesCollectionViewCell else { return UICollectionViewCell() }
-        cell.configure(with: upcomingMoviesArray[indexPath.row])
-        return cell
+        if collectionView == self.upcomingMovies {
+            guard let cell = upcomingMovies.dequeueReusableCell(withReuseIdentifier: HorizontalMoviesCollectionViewCell.identifier, for: indexPath) as? HorizontalMoviesCollectionViewCell else { return UICollectionViewCell() }
+            cell.configure(with: upcomingMoviesArray[indexPath.row])
+            return cell
+        } else if collectionView == self.topRatedMovies {
+            guard let cell = topRatedMovies.dequeueReusableCell(withReuseIdentifier: HorizontalMoviesCollectionViewCell.identifier, for: indexPath) as? HorizontalMoviesCollectionViewCell else { return UICollectionViewCell() }
+            cell.configure(with: topRatedMoviesArray[indexPath.row])
+            return cell
+        }
+        return UICollectionViewCell()
     }
 }
 
