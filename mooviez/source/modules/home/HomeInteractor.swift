@@ -17,6 +17,7 @@ final class HomeInteractor: HomeInteractorProtocol {
     func load() {
         getUpcomingMovies()
         getTopRatedMovies()
+        getTrendingMovies()
     }
     
     func getUpcomingMovies() {
@@ -35,6 +36,17 @@ final class HomeInteractor: HomeInteractorProtocol {
             switch result {
             case .success(let data):
                 self.delegate?.handleOutput(.showTopRatedMovies(data))
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    func getTrendingMovies() {
+        movieManager.getTrendingMovies { (result) in
+            switch result {
+            case .success(let data):
+                self.delegate?.handleOutput(.showTrendingMovies(data))
             case .failure(_):
                 break
             }

@@ -52,10 +52,32 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    private lazy var trendingTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = R.font.montserratBold(size: 30)
+        label.text = R.string.localizable.title_trending_movies()
+        label.textColor = R.color.titleColor()
+        return label
+    }()
+    
+    private lazy var trendingMovies: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.clear
+        view.delegate = self
+        view.dataSource = self
+        return view
+    }()
+    
     // MARK: - Variables
     var presenter: HomePresenterProtocol?
     private var upcomingMoviesArray: [Movie] = []
     private var topRatedMoviesArray: [Movie] = []
+    private var trendingMoviesArray: [Movie] = []
     private var minimumLineSpacing = 25.0
     
     // MARK: - Life Cycle
@@ -72,11 +94,13 @@ class HomeViewController: UIViewController {
         addUpcomingMovies()
         addTopRatedTitle()
         addTopRatedMovies()
+        addTrendingTitle()
+        addTrendingMovies()
     }
     
     private func setView() {
         view.backgroundColor = R.color.backgroundColor()
-        setUpcomingMovies()
+        setMovies()
     }
     
     private func addUpcomingTitle() {
@@ -88,11 +112,13 @@ class HomeViewController: UIViewController {
         ])
     }
     
-    private func setUpcomingMovies() {
+    private func setMovies() {
         upcomingMovies.register(HorizontalMoviesCollectionViewCell.self,
                                 forCellWithReuseIdentifier: HorizontalMoviesCollectionViewCell.identifier)
         topRatedMovies.register(HorizontalMoviesCollectionViewCell.self,
                                 forCellWithReuseIdentifier: HorizontalMoviesCollectionViewCell.identifier)
+        trendingMovies.register(VerticalMoviesCollectionViewCell.self,
+                                forCellWithReuseIdentifier: VerticalMoviesCollectionViewCell.identifier)
     }
     
     private func addUpcomingMovies() {
@@ -125,6 +151,25 @@ class HomeViewController: UIViewController {
             topRatedMovies.heightAnchor.constraint(equalToConstant: height)
         ])
     }
+    
+    private func addTrendingTitle() {
+        view.addSubview(trendingTitleLabel)
+        NSLayoutConstraint.activate([
+            trendingTitleLabel.topAnchor.constraint(equalTo: topRatedMovies.bottomAnchor, constant: 20),
+            trendingTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            trendingTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+        ])
+    }
+    
+    private func addTrendingMovies() {
+        view.addSubview(trendingMovies)
+        NSLayoutConstraint.activate([
+            trendingMovies.topAnchor.constraint(equalTo: trendingTitleLabel.bottomAnchor, constant: 20),
+            trendingMovies.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            trendingMovies.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            trendingMovies.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
 }
 
 // MARK: - Home View Protocol
@@ -138,6 +183,9 @@ extension HomeViewController: HomeViewProtocol {
         case .showTopRatedMovies(let result):
             self.topRatedMoviesArray = result
             topRatedMovies.reloadData()
+        case .showTrendingMovies(let result):
+            self.trendingMoviesArray = result
+            trendingMovies.reloadData()
         }
     }
     
@@ -154,6 +202,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return upcomingMoviesArray.count
         } else if collectionView == self.topRatedMovies {
             return topRatedMoviesArray.count
+        } else if collectionView == self.trendingMovies {
+            return trendingMoviesArray.count
         }
         return 0
     }
@@ -167,6 +217,10 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let cell = topRatedMovies.dequeueReusableCell(withReuseIdentifier: HorizontalMoviesCollectionViewCell.identifier, for: indexPath) as? HorizontalMoviesCollectionViewCell else { return UICollectionViewCell() }
             cell.configure(with: topRatedMoviesArray[indexPath.row])
             return cell
+        } else if collectionView == self.trendingMovies {
+            guard let cell = trendingMovies.dequeueReusableCell(withReuseIdentifier: VerticalMoviesCollectionViewCell.identifier, for: indexPath) as? VerticalMoviesCollectionViewCell else { return UICollectionViewCell() }
+            cell.configure(with: trendingMoviesArray[indexPath.row])
+            return cell
         }
         return UICollectionViewCell()
     }
@@ -175,6 +229,9 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == trendingMovies {
+            return CGSize(width: view.frame.width, height: view.frame.height / 4)
+        }
         let width = view.frame.width / 2
         let height = view.frame.width / 3
         return CGSize(width: width, height: height)

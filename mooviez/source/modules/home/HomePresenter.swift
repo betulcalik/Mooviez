@@ -38,6 +38,8 @@ extension HomePresenter: HomeInteractorDelegate {
             view?.handleOutput(.showUpcomingMovies(upcomingMovieResponse))
         case .showTopRatedMovies(let topRatedMoviesResponse):
             view?.handleOutput(.showTopRatedMovies(topRatedMoviesResponse))
+        case .showTrendingMovies(let trendingMoviesResponse):
+            view?.handleOutput(.showTrendingMovies(trendingMoviesResponse))
         }
     }
 

@@ -50,7 +50,7 @@ class HorizontalMoviesCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Configure cell
     public func configure(with model: Movie) {
-        guard let posterPath = model.posterPath else { return }
+        guard let posterPath = model.backdropPath else { return }
         let urlString = baseImageURL + posterPath
         let url = URL(string: urlString)
         movieImageView.kf.setImage(with: url)

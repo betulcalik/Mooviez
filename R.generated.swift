@@ -106,12 +106,14 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 3 colors.
+  /// This `R.color` struct is generated, and contains static references to 4 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
     /// Color `backgroundColor`.
     static let backgroundColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "backgroundColor")
+    /// Color `smallTitleColor`.
+    static let smallTitleColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "smallTitleColor")
     /// Color `titleColor`.
     static let titleColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "titleColor")
 
@@ -130,6 +132,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func backgroundColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.backgroundColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "smallTitleColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func smallTitleColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.smallTitleColor, compatibleWith: traitCollection)
     }
     #endif
 
@@ -155,6 +166,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func backgroundColor(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.backgroundColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "smallTitleColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func smallTitleColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.smallTitleColor.name)
     }
     #endif
 
@@ -296,10 +315,12 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 2 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 3 localization keys.
     struct localizable {
       /// Value: Top Rated Movies
       static let title_top_rated_movies = Rswift.StringResource(key: "title_top_rated_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Trending Movies
+      static let title_trending_movies = Rswift.StringResource(key: "title_trending_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Upcoming Movies
       static let title_upcoming_movies = Rswift.StringResource(key: "title_upcoming_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
 
@@ -314,6 +335,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("title_top_rated_movies", bundle: bundle, comment: "")
+      }
+
+      /// Value: Trending Movies
+      static func title_trending_movies(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("title_trending_movies", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "title_trending_movies"
+        }
+
+        return NSLocalizedString("title_trending_movies", bundle: bundle, comment: "")
       }
 
       /// Value: Upcoming Movies
