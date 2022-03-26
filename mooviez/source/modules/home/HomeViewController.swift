@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 8
         return stackView
     }()
     
@@ -91,7 +91,7 @@ class HomeViewController: UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 8
         return stackView
     }()
     
@@ -136,6 +136,15 @@ class HomeViewController: UIViewController {
     private func setView() {
         view.backgroundColor = R.color.backgroundColor()
         setMovies()
+        setNavigationBar()
+    }
+    
+    private func setNavigationBar() {
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.font: R.font.montserratBold(size: 22) ?? UIFont.systemFont(ofSize: 22),
+            NSAttributedString.Key.foregroundColor: R.color.smallTitleColor() ?? .white
+        ]
+        navigationItem.title = R.string.localizable.title_navigation_bar()
     }
 
     private func setMovies() {
@@ -150,7 +159,7 @@ class HomeViewController: UIViewController {
     private func addScrollView() {
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
@@ -197,7 +206,7 @@ class HomeViewController: UIViewController {
             trendingStackView.topAnchor.constraint(equalTo: topRatedStackView.bottomAnchor, constant: 20),
             trendingStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             trendingStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            trendingStackView.heightAnchor.constraint(equalToConstant: 400)
+            trendingStackView.heightAnchor.constraint(equalToConstant: 350)
         ])
     }
     
@@ -261,9 +270,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == trendingMovies {
-            return CGSize(width: view.frame.width, height: view.frame.height / 4)
+            return CGSize(width: collectionView.frame.width, height: view.frame.height / 4)
         }
-        let width = view.frame.width / 2
+        let width = collectionView.frame.width / 2
         let height = view.frame.width / 3
         return CGSize(width: width, height: height)
     }
