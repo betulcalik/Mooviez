@@ -20,4 +20,10 @@ final class HomeRouter: HomeRouterProtocol {
         return view
     }
     
+    func navigateToDetail(on view: HomeViewProtocol) {
+        guard let viewController = view as? HomeViewController else { return }
+        guard let detailViewController = HomeDetailRouter.build() as? HomeDetailViewController else { return }
+        
+        viewController.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }

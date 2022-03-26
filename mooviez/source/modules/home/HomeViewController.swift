@@ -234,6 +234,10 @@ extension HomeViewController: HomeViewProtocol {
 // MARK: - Collection View Delegates
 extension HomeViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.navigateToDetail()
+    }
+    
 }
 
 extension HomeViewController: UICollectionViewDataSource {

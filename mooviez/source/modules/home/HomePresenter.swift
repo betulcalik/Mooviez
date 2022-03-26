@@ -27,6 +27,11 @@ final class HomePresenter: HomePresenterProtocol {
         interactor.load()
     }
     
+    func navigateToDetail() {
+        guard let view = view else { return }
+        router.navigateToDetail(on: view)
+    }
+    
 }
 
 // MARK: - Home Interactor Delegate

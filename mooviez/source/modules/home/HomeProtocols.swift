@@ -38,6 +38,7 @@ enum HomeInteractorOutput {
 // MARK: - Presenter
 protocol HomePresenterProtocol: AnyObject {
     func load()
+    func navigateToDetail()
 }
 
 enum HomePresenterOutput {
@@ -49,4 +50,5 @@ enum HomePresenterOutput {
 // MARK: - Router
 protocol HomeRouterProtocol: AnyObject {
     static func build() -> HomeViewProtocol
+    func navigateToDetail(on view: HomeViewProtocol)
 }
