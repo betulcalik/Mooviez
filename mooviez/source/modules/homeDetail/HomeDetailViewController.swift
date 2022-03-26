@@ -21,17 +21,7 @@ class HomeDetailViewController: UIViewController {
         imageView.clipsToBounds = true
         return imageView
     }()
-    
-    private lazy var movieTitle: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.font = R.font.montserratBold(size: 20)
-        label.textColor = .white
-        label.textAlignment = .left
-        return label
-    }()
-    
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: .zero)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +38,7 @@ class HomeDetailViewController: UIViewController {
     
     // MARK: - Variables
     var presenter: HomeDetailPresenterProtocol?
+    private var movie: Movie?
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -58,18 +49,19 @@ class HomeDetailViewController: UIViewController {
     // MARK: - Setup UI
     private func setupUI() {
         view.backgroundColor = R.color.backgroundColor()
+        presenter?.load()
         setNavigationBar()
         addScrollView()
         addContentStackView()
         addMovieImage()
-        addMovieTitle()
     }
     
     private func setNavigationBar() {
         let backButton = UIBarButtonItem()
-        backButton.title = R.string.localizable.title_hd_back_button()
+        backButton.title = ""
         backButton.tintColor = .white
-        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        navigationItem.title = movie?.originalTitle
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
     private func addScrollView() {
@@ -97,22 +89,28 @@ class HomeDetailViewController: UIViewController {
             movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             movieImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            movieImageView.heightAnchor.constraint(equalToConstant: contentViewSize.height / 2.5)
+            movieImageView.heightAnchor.constraint(equalToConstant: contentViewSize.height / 2)
         ])
     }
-    
-    private func addMovieTitle() {
-        contentView.addSubview(movieTitle)
-        NSLayoutConstraint.activate([
-            movieTitle.topAnchor.constraint(equalTo: movieImageView.bottomAnchor, constant: -25),
-            movieTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            movieTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ])
+
+    private func updateMovieDetail(with movie: Movie) {
+        guard let posterPath = movie.posterPath else { return }
+        let urlString = MovieManager.shared.imageBaseURL + posterPath
+        let url = URL(string: urlString)
+        movieImageView.kf.setImage(with: url)
     }
  
 }
 
 // MARK: - Home Detail View Protocol
 extension HomeDetailViewController: HomeDetailViewProtocol {
+    
+    func handleOutput(_ output: HomeDetailPresenterOutput) {
+        switch output {
+        case .showMovieDetail(let movie):
+            self.movie = movie
+            updateMovieDetail(with: movie)
+        }
+    }
     
 }

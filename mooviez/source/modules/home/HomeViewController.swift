@@ -235,7 +235,14 @@ extension HomeViewController: HomeViewProtocol {
 extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.navigateToDetail()
+        collectionView.deselectItem(at: indexPath, animated: true)
+        if collectionView == self.upcomingMovies {
+            presenter?.selectMovie(with: .upcomingMovies, at: indexPath.row)
+        } else if collectionView == self.topRatedMovies {
+            presenter?.selectMovie(with: .topRatedMovies, at: indexPath.row)
+        } else if collectionView == self.trendingMovies {
+            presenter?.selectMovie(with: .trendingMovies, at: indexPath.row)
+        }
     }
     
 }

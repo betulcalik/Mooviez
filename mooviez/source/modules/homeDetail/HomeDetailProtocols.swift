@@ -10,19 +10,20 @@ import Foundation
 // MARK: - View
 protocol HomeDetailViewProtocol: AnyObject {
     var presenter: HomeDetailPresenterProtocol? { get set }
-}
-
-// MARK: - Interactor
-protocol HomeDetailInteractorProtocol: AnyObject {
     
+    func handleOutput(_ output: HomeDetailPresenterOutput)
 }
 
 // MARK: - Presenter
 protocol HomeDetailPresenterProtocol: AnyObject {
-    
+    func load()
+}
+
+enum HomeDetailPresenterOutput {
+    case showMovieDetail(Movie)
 }
 
 // MARK: - Router
 protocol HomeDetailRouterProtocol: AnyObject {
-    static func build() -> HomeDetailViewProtocol
+    static func build(with movie: Movie) -> HomeDetailViewProtocol
 }

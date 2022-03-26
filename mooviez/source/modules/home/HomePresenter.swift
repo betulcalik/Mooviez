@@ -26,12 +26,10 @@ final class HomePresenter: HomePresenterProtocol {
     func load() {
         interactor.load()
     }
-    
-    func navigateToDetail() {
-        guard let view = view else { return }
-        router.navigateToDetail(on: view)
+
+    func selectMovie(with movieType: MovieType, at index: Int) {
+        interactor.selectMovie(with: movieType, at: index)
     }
-    
 }
 
 // MARK: - Home Interactor Delegate
@@ -45,6 +43,9 @@ extension HomePresenter: HomeInteractorDelegate {
             view?.handleOutput(.showTopRatedMovies(topRatedMoviesResponse))
         case .showTrendingMovies(let trendingMoviesResponse):
             view?.handleOutput(.showTrendingMovies(trendingMoviesResponse))
+        case .showMovieDetail(let movie):
+            guard let view = view else { return }
+            router.navigateToDetail(with: movie, on: view)
         }
     }
 

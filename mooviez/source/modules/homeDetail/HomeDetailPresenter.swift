@@ -11,15 +11,19 @@ class HomeDetailPresenter: HomeDetailPresenterProtocol {
     
     // MARK: - Variables
     unowned var view: HomeDetailViewProtocol?
-    private let interactor: HomeDetailInteractorProtocol
     private let router: HomeDetailRouterProtocol
+    private let movie: Movie
     
     init(view: HomeDetailViewProtocol,
-         interactor: HomeDetailInteractorProtocol,
+         movie: Movie,
          router: HomeDetailRouterProtocol) {
         self.view = view
-        self.interactor = interactor
+        self.movie = movie
         self.router = router
+    }
+    
+    func load() {
+        view?.handleOutput(.showMovieDetail(movie))
     }
     
 }

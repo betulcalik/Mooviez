@@ -9,12 +9,11 @@ import Foundation
 
 class HomeDetailRouter: HomeDetailRouterProtocol {
     
-    static func build() -> HomeDetailViewProtocol {
+    static func build(with movie: Movie) -> HomeDetailViewProtocol {
         let view: HomeDetailViewProtocol = HomeDetailViewController()
-        let interactor: HomeDetailInteractorProtocol = HomeDetailInteractor()
         let router: HomeDetailRouterProtocol = HomeDetailRouter()
         let presenter: HomeDetailPresenterProtocol = HomeDetailPresenter(view: view,
-                                                                         interactor: interactor,
+                                                                         movie: movie,
                                                                          router: router)
         view.presenter = presenter
         return view

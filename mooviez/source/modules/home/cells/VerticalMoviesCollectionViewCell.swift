@@ -31,7 +31,6 @@ class VerticalMoviesCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Variables
     static let identifier = "VerticalMoviesCollectionViewCell"
-    private let baseImageURL = "https://image.tmdb.org/t/p/w300"
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -80,7 +79,7 @@ class VerticalMoviesCollectionViewCell: UICollectionViewCell {
     // MARK: - Configure cell
     public func configure(with model: Movie) {
         guard let posterPath = model.backdropPath else { return }
-        let urlString = baseImageURL + posterPath
+        let urlString = MovieManager.shared.imageBaseURL + posterPath
         let url = URL(string: urlString)
         movieImageView.kf.setImage(with: url)
         movieTitle.text = model.originalTitle

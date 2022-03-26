@@ -315,10 +315,8 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 5 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 4 localization keys.
     struct localizable {
-      /// Value: Home
-      static let title_hd_back_button = Rswift.StringResource(key: "title_hd_back_button", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Mooviez 🎬
       static let title_h_navigation_bar = Rswift.StringResource(key: "title_h_navigation_bar", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Top Rated Movies
@@ -327,19 +325,6 @@ struct R: Rswift.Validatable {
       static let title_h_trending_movies = Rswift.StringResource(key: "title_h_trending_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Upcoming Movies
       static let title_h_upcoming_movies = Rswift.StringResource(key: "title_h_upcoming_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-
-      /// Value: Home
-      static func title_hd_back_button(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("title_hd_back_button", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "title_hd_back_button"
-        }
-
-        return NSLocalizedString("title_hd_back_button", bundle: bundle, comment: "")
-      }
 
       /// Value: Mooviez 🎬
       static func title_h_navigation_bar(preferredLanguages: [String]? = nil) -> String {

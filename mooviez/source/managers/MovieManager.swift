@@ -17,6 +17,7 @@ final class MovieManager {
     private let apiKey = "7bc13f9bf8f8b7b8042cbca270f41011"
     private let language = "en-US"
     private let timeWindow = "week"
+    let imageBaseURL = "https://image.tmdb.org/t/p/w300"
     
     func getUpcomingMovies(completionHandler: @escaping (Result<[Movie], Error>) -> Void) {
         let urlString = baseURL + "upcoming?api_key=" + apiKey + "&language=" + language + "&page=1"
