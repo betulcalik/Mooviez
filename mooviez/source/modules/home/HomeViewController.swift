@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = R.font.montserratBold(size: 30)
-        label.text = R.string.localizable.title_upcoming_movies()
+        label.text = R.string.localizable.title_h_upcoming_movies()
         label.textColor = R.color.titleColor()
         return label
     }()
@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = R.font.montserratBold(size: 30)
-        label.text = R.string.localizable.title_top_rated_movies()
+        label.text = R.string.localizable.title_h_top_rated_movies()
         label.textColor = R.color.titleColor()
         return label
     }()
@@ -72,7 +72,7 @@ class HomeViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = R.font.montserratBold(size: 30)
-        label.text = R.string.localizable.title_trending_movies()
+        label.text = R.string.localizable.title_h_trending_movies()
         label.textColor = R.color.titleColor()
         return label
     }()
@@ -144,7 +144,7 @@ class HomeViewController: UIViewController {
             NSAttributedString.Key.font: R.font.montserratBold(size: 22) ?? UIFont.systemFont(ofSize: 22),
             NSAttributedString.Key.foregroundColor: R.color.smallTitleColor() ?? .white
         ]
-        navigationItem.title = R.string.localizable.title_navigation_bar()
+        navigationItem.title = R.string.localizable.title_h_navigation_bar()
     }
 
     private func setMovies() {

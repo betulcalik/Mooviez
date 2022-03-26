@@ -7,7 +7,10 @@
 */
 
 // Home View
-"title_navigation_bar" = "Mooviez 🎬";
-"title_upcoming_movies" = "Upcoming Movies";
-"title_top_rated_movies" = "Top Rated Movies";
-"title_trending_movies" = "Trending Movies";
+"title_h_navigation_bar" = "Mooviez 🎬";
+"title_h_upcoming_movies" = "Upcoming Movies";
+"title_h_top_rated_movies" = "Top Rated Movies";
+"title_h_trending_movies" = "Trending Movies";
+
+// Home Detail View
+"title_hd_back_button" = "Home";

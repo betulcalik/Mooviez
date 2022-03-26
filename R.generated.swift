@@ -315,67 +315,82 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 4 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 5 localization keys.
     struct localizable {
+      /// Value: Home
+      static let title_hd_back_button = Rswift.StringResource(key: "title_hd_back_button", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Mooviez 🎬
-      static let title_navigation_bar = Rswift.StringResource(key: "title_navigation_bar", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let title_h_navigation_bar = Rswift.StringResource(key: "title_h_navigation_bar", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Top Rated Movies
-      static let title_top_rated_movies = Rswift.StringResource(key: "title_top_rated_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let title_h_top_rated_movies = Rswift.StringResource(key: "title_h_top_rated_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Trending Movies
-      static let title_trending_movies = Rswift.StringResource(key: "title_trending_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let title_h_trending_movies = Rswift.StringResource(key: "title_h_trending_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Upcoming Movies
-      static let title_upcoming_movies = Rswift.StringResource(key: "title_upcoming_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let title_h_upcoming_movies = Rswift.StringResource(key: "title_h_upcoming_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+
+      /// Value: Home
+      static func title_hd_back_button(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("title_hd_back_button", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "title_hd_back_button"
+        }
+
+        return NSLocalizedString("title_hd_back_button", bundle: bundle, comment: "")
+      }
 
       /// Value: Mooviez 🎬
-      static func title_navigation_bar(preferredLanguages: [String]? = nil) -> String {
+      static func title_h_navigation_bar(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("title_navigation_bar", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("title_h_navigation_bar", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "title_navigation_bar"
+          return "title_h_navigation_bar"
         }
 
-        return NSLocalizedString("title_navigation_bar", bundle: bundle, comment: "")
+        return NSLocalizedString("title_h_navigation_bar", bundle: bundle, comment: "")
       }
 
       /// Value: Top Rated Movies
-      static func title_top_rated_movies(preferredLanguages: [String]? = nil) -> String {
+      static func title_h_top_rated_movies(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("title_top_rated_movies", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("title_h_top_rated_movies", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "title_top_rated_movies"
+          return "title_h_top_rated_movies"
         }
 
-        return NSLocalizedString("title_top_rated_movies", bundle: bundle, comment: "")
+        return NSLocalizedString("title_h_top_rated_movies", bundle: bundle, comment: "")
       }
 
       /// Value: Trending Movies
-      static func title_trending_movies(preferredLanguages: [String]? = nil) -> String {
+      static func title_h_trending_movies(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("title_trending_movies", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("title_h_trending_movies", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "title_trending_movies"
+          return "title_h_trending_movies"
         }
 
-        return NSLocalizedString("title_trending_movies", bundle: bundle, comment: "")
+        return NSLocalizedString("title_h_trending_movies", bundle: bundle, comment: "")
       }
 
       /// Value: Upcoming Movies
-      static func title_upcoming_movies(preferredLanguages: [String]? = nil) -> String {
+      static func title_h_upcoming_movies(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("title_upcoming_movies", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("title_h_upcoming_movies", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "title_upcoming_movies"
+          return "title_h_upcoming_movies"
         }
 
-        return NSLocalizedString("title_upcoming_movies", bundle: bundle, comment: "")
+        return NSLocalizedString("title_h_upcoming_movies", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}
