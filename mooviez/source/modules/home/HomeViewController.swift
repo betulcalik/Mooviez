@@ -9,10 +9,13 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    // MARK: - Properties
+    private lazy var contentViewSize = CGSize(width: view.frame.width,
+                                              height: view.frame.height + 400)
+    
     // MARK: - UI Components
     private lazy var upcomingTitleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.font = R.font.montserratBold(size: 30)
         label.text = R.string.localizable.title_upcoming_movies()
@@ -24,16 +27,22 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.clear
         view.delegate = self
         view.dataSource = self
         return view
     }()
     
+    private lazy var upcomingStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        return stackView
+    }()
+    
     private lazy var topRatedTitleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.font = R.font.montserratBold(size: 30)
         label.text = R.string.localizable.title_top_rated_movies()
@@ -45,16 +54,22 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.clear
         view.delegate = self
         view.dataSource = self
         return view
     }()
     
+    private lazy var topRatedStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        return stackView
+    }()
+    
     private lazy var trendingTitleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.font = R.font.montserratBold(size: 30)
         label.text = R.string.localizable.title_trending_movies()
@@ -66,10 +81,31 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.clear
         view.delegate = self
         view.dataSource = self
+        return view
+    }()
+    
+    private lazy var trendingStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        return stackView
+    }()
+    
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView(frame: .zero)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentSize = contentViewSize
+        scrollView.bounds = view.bounds
+        return scrollView
+    }()
+    
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -90,11 +126,10 @@ class HomeViewController: UIViewController {
     private func setupUI() {
         presenter?.load()
         setView()
-        addUpcomingTitle()
+        addScrollView()
+        addContentStackView()
         addUpcomingMovies()
-        addTopRatedTitle()
         addTopRatedMovies()
-        addTrendingTitle()
         addTrendingMovies()
     }
     
@@ -102,16 +137,7 @@ class HomeViewController: UIViewController {
         view.backgroundColor = R.color.backgroundColor()
         setMovies()
     }
-    
-    private func addUpcomingTitle() {
-        view.addSubview(upcomingTitleLabel)
-        NSLayoutConstraint.activate([
-            upcomingTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            upcomingTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            upcomingTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
-        ])
-    }
-    
+
     private func setMovies() {
         upcomingMovies.register(HorizontalMoviesCollectionViewCell.self,
                                 forCellWithReuseIdentifier: HorizontalMoviesCollectionViewCell.identifier)
@@ -121,55 +147,60 @@ class HomeViewController: UIViewController {
                                 forCellWithReuseIdentifier: VerticalMoviesCollectionViewCell.identifier)
     }
     
-    private func addUpcomingMovies() {
-        let height = view.frame.height / 6
-        view.addSubview(upcomingMovies)
+    private func addScrollView() {
+        view.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            upcomingMovies.topAnchor.constraint(equalTo: upcomingTitleLabel.bottomAnchor, constant: 20),
-            upcomingMovies.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            upcomingMovies.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            upcomingMovies.heightAnchor.constraint(equalToConstant: height)
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
     
-    private func addTopRatedTitle() {
-        view.addSubview(topRatedTitleLabel)
+    private func addContentStackView() {
+        scrollView.addSubview(contentView)
         NSLayoutConstraint.activate([
-            topRatedTitleLabel.topAnchor.constraint(equalTo: upcomingMovies.bottomAnchor, constant: 20),
-            topRatedTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            topRatedTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        ])
+    }
+    
+    private func addUpcomingMovies() {
+        upcomingStackView.addArrangedSubview(upcomingTitleLabel)
+        upcomingStackView.addArrangedSubview(upcomingMovies)
+        contentView.addSubview(upcomingStackView)
+        NSLayoutConstraint.activate([
+            upcomingStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            upcomingStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            upcomingStackView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
     
     private func addTopRatedMovies() {
-        let height = view.frame.height / 6
-        view.addSubview(topRatedMovies)
+        topRatedStackView.addArrangedSubview(topRatedTitleLabel)
+        topRatedStackView.addArrangedSubview(topRatedMovies)
+        contentView.addSubview(topRatedStackView)
         NSLayoutConstraint.activate([
-            topRatedMovies.topAnchor.constraint(equalTo: topRatedTitleLabel.bottomAnchor, constant: 20),
-            topRatedMovies.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            topRatedMovies.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            topRatedMovies.heightAnchor.constraint(equalToConstant: height)
-        ])
-    }
-    
-    private func addTrendingTitle() {
-        view.addSubview(trendingTitleLabel)
-        NSLayoutConstraint.activate([
-            trendingTitleLabel.topAnchor.constraint(equalTo: topRatedMovies.bottomAnchor, constant: 20),
-            trendingTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            trendingTitleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            topRatedStackView.topAnchor.constraint(equalTo: upcomingStackView.bottomAnchor, constant: 20),
+            topRatedStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            topRatedStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            topRatedStackView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
     
     private func addTrendingMovies() {
-        view.addSubview(trendingMovies)
+        trendingStackView.addArrangedSubview(trendingTitleLabel)
+        trendingStackView.addArrangedSubview(trendingMovies)
+        contentView.addSubview(trendingStackView)
         NSLayoutConstraint.activate([
-            trendingMovies.topAnchor.constraint(equalTo: trendingTitleLabel.bottomAnchor, constant: 20),
-            trendingMovies.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            trendingMovies.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            trendingMovies.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            trendingStackView.topAnchor.constraint(equalTo: topRatedStackView.bottomAnchor, constant: 20),
+            trendingStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            trendingStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            trendingStackView.heightAnchor.constraint(equalToConstant: 400)
         ])
     }
+    
 }
 
 // MARK: - Home View Protocol
