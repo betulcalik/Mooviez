@@ -106,12 +106,14 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 4 colors.
+  /// This `R.color` struct is generated, and contains static references to 5 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
     /// Color `backgroundColor`.
     static let backgroundColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "backgroundColor")
+    /// Color `redColor`.
+    static let redColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "redColor")
     /// Color `smallTitleColor`.
     static let smallTitleColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "smallTitleColor")
     /// Color `titleColor`.
@@ -132,6 +134,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func backgroundColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.backgroundColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "redColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func redColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.redColor, compatibleWith: traitCollection)
     }
     #endif
 
@@ -166,6 +177,14 @@ struct R: Rswift.Validatable {
     @available(watchOSApplicationExtension 4.0, *)
     static func backgroundColor(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.backgroundColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "redColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func redColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.redColor.name)
     }
     #endif
 
@@ -315,7 +334,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 7 localization keys.
     struct localizable {
       /// Value: Mooviez 🎬
       static let title_h_navigation_bar = Rswift.StringResource(key: "title_h_navigation_bar", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -329,6 +348,8 @@ struct R: Rswift.Validatable {
       static let title_h_upcoming_movies = Rswift.StringResource(key: "title_h_upcoming_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Vote average: %.1f
       static let text_hd_vote_average = Rswift.StringResource(key: "text_hd_vote_average", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Watch trailer 🍿
+      static let text_hd_watch_trailer = Rswift.StringResource(key: "text_hd_watch_trailer", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
 
       /// Value: Mooviez 🎬
       static func title_h_navigation_bar(preferredLanguages: [String]? = nil) -> String {
@@ -410,6 +431,19 @@ struct R: Rswift.Validatable {
 
         let format = NSLocalizedString("text_hd_vote_average", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
+      }
+
+      /// Value: Watch trailer 🍿
+      static func text_hd_watch_trailer(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("text_hd_watch_trailer", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "text_hd_watch_trailer"
+        }
+
+        return NSLocalizedString("text_hd_watch_trailer", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

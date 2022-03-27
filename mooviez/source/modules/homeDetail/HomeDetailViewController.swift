@@ -22,6 +22,18 @@ class HomeDetailViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var watchTrailerButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(R.string.localizable.text_hd_watch_trailer(), for: .normal)
+        button.backgroundColor = R.color.redColor()
+        button.layer.cornerRadius = 7
+        button.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        button.addTarget(self, action: #selector(didWatchTrailerTap), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var movieOverview: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -88,6 +100,7 @@ class HomeDetailViewController: UIViewController {
         addScrollView()
         addContentStackView()
         addMovieImage()
+        addWatchTrailerButton()
         addMovieDetails()
         addMovieOverview()
     }
@@ -129,6 +142,14 @@ class HomeDetailViewController: UIViewController {
         ])
     }
     
+    private func addWatchTrailerButton() {
+        contentView.addSubview(watchTrailerButton)
+        NSLayoutConstraint.activate([
+            watchTrailerButton.trailingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: -20),
+            watchTrailerButton.bottomAnchor.constraint(equalTo: movieImageView.bottomAnchor, constant: -20)
+        ])
+    }
+    
     private func addMovieDetails() {
         movieDetailStackView.addArrangedSubview(movieReleaseDate)
         movieDetailStackView.addArrangedSubview(movieVoteAverage)
@@ -157,6 +178,11 @@ class HomeDetailViewController: UIViewController {
         movieOverview.text = movie.overview
         movieVoteAverage.text = R.string.localizable.text_hd_vote_average(movie.voteAverage)
         movieReleaseDate.text = R.string.localizable.text_hd_release_date(movie.releaseDate)
+    }
+    
+    // MARK: - Actions
+    @objc func didWatchTrailerTap(_ sender: UIButton) {
+        print("hey you tapped me!")
     }
  
 }
