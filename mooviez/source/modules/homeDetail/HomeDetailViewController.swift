@@ -21,6 +21,40 @@ class HomeDetailViewController: UIViewController {
         imageView.clipsToBounds = true
         return imageView
     }()
+    
+    private lazy var movieOverview: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.font = R.font.montserratRegular(size: 14)
+        label.textColor = .white
+        label.textAlignment = .justified
+        return label
+    }()
+    
+    private lazy var movieReleaseDate: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = R.font.montserratBold(size: 14)
+        label.textColor = .white
+        return label
+    }()
+    
+    private lazy var movieVoteAverage: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = R.font.montserratBold(size: 14)
+        label.textColor = .white
+        label.textAlignment = .right
+        return label
+    }()
+    
+    private lazy var movieDetailStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 20
+        return stackView
+    }()
 
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: .zero)
@@ -54,6 +88,8 @@ class HomeDetailViewController: UIViewController {
         addScrollView()
         addContentStackView()
         addMovieImage()
+        addMovieDetails()
+        addMovieOverview()
     }
     
     private func setNavigationBar() {
@@ -92,12 +128,35 @@ class HomeDetailViewController: UIViewController {
             movieImageView.heightAnchor.constraint(equalToConstant: contentViewSize.height / 2)
         ])
     }
+    
+    private func addMovieDetails() {
+        movieDetailStackView.addArrangedSubview(movieReleaseDate)
+        movieDetailStackView.addArrangedSubview(movieVoteAverage)
+        contentView.addSubview(movieDetailStackView)
+        NSLayoutConstraint.activate([
+            movieDetailStackView.topAnchor.constraint(equalTo: movieImageView.bottomAnchor, constant: 20),
+            movieDetailStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            movieDetailStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+        ])
+    }
+    
+    private func addMovieOverview() {
+        contentView.addSubview(movieOverview)
+        NSLayoutConstraint.activate([
+            movieOverview.topAnchor.constraint(equalTo: movieDetailStackView.bottomAnchor, constant: 20),
+            movieOverview.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            movieOverview.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+        ])
+    }
 
     private func updateMovieDetail(with movie: Movie) {
         guard let posterPath = movie.posterPath else { return }
         let urlString = MovieManager.shared.imageBaseURL + posterPath
         let url = URL(string: urlString)
         movieImageView.kf.setImage(with: url)
+        movieOverview.text = movie.overview
+        movieVoteAverage.text = R.string.localizable.text_hd_vote_average(movie.voteAverage)
+        movieReleaseDate.text = R.string.localizable.text_hd_release_date(movie.releaseDate)
     }
  
 }

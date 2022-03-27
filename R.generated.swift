@@ -315,16 +315,20 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 4 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
     struct localizable {
       /// Value: Mooviez 🎬
       static let title_h_navigation_bar = Rswift.StringResource(key: "title_h_navigation_bar", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Release date: %@
+      static let text_hd_release_date = Rswift.StringResource(key: "text_hd_release_date", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Top Rated Movies
       static let title_h_top_rated_movies = Rswift.StringResource(key: "title_h_top_rated_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Trending Movies
       static let title_h_trending_movies = Rswift.StringResource(key: "title_h_trending_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Upcoming Movies
       static let title_h_upcoming_movies = Rswift.StringResource(key: "title_h_upcoming_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Vote average: %.1f
+      static let text_hd_vote_average = Rswift.StringResource(key: "text_hd_vote_average", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
 
       /// Value: Mooviez 🎬
       static func title_h_navigation_bar(preferredLanguages: [String]? = nil) -> String {
@@ -337,6 +341,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("title_h_navigation_bar", bundle: bundle, comment: "")
+      }
+
+      /// Value: Release date: %@
+      static func text_hd_release_date(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("text_hd_release_date", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "text_hd_release_date"
+        }
+
+        let format = NSLocalizedString("text_hd_release_date", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// Value: Top Rated Movies
@@ -376,6 +395,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("title_h_upcoming_movies", bundle: bundle, comment: "")
+      }
+
+      /// Value: Vote average: %.1f
+      static func text_hd_vote_average(_ value1: Double, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("text_hd_vote_average", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "text_hd_vote_average"
+        }
+
+        let format = NSLocalizedString("text_hd_vote_average", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       fileprivate init() {}

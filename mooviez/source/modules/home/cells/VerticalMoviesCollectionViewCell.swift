@@ -23,7 +23,6 @@ class VerticalMoviesCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.font = R.font.montserratBold(size: 24)
-        label.text = R.string.localizable.title_h_upcoming_movies()
         label.textColor = .white
         label.textAlignment = .center
         return label

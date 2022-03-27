@@ -13,3 +13,5 @@
 "title_h_trending_movies" = "Trending Movies";
 
 // Home Detail View
+"text_hd_release_date" = "Release date: %@";
+"text_hd_vote_average" = "Vote average: %.1f";
