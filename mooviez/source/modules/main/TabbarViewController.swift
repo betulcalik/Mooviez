@@ -26,7 +26,10 @@ class TabbarViewController: UITabBarController {
         guard let home = HomeRouter.build() as? HomeViewController else { return }
         let homeVC = UINavigationController(rootViewController: home)
         
-        setViewControllers([ homeVC ], animated: true)
+        guard let search = SearchRouter.build() as? SearchViewController else { return }
+        let searchVC = UINavigationController(rootViewController: search)
+        
+        setViewControllers([ homeVC, searchVC ], animated: true)
     }
     
     private func setupTabbar() {
@@ -37,8 +40,9 @@ class TabbarViewController: UITabBarController {
     
     private func setupTabbarIcons() {
         guard let items = tabBar.items else { return }
-        let titles = [ R.string.localizable.title_home() ]
-        let images = ["house.fill"]
+        let titles = [ R.string.localizable.title_home(),
+                       R.string.localizable.title_search() ]
+        let images = ["house.fill", "magnifyingglass"]
         
         for i in 0..<images.count {
             items[i].image = UIImage(systemName: images[i])

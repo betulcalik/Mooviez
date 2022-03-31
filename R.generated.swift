@@ -353,7 +353,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 8 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 9 localization keys.
     struct localizable {
       /// Value: Home
       static let title_home = Rswift.StringResource(key: "title_home", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -361,6 +361,8 @@ struct R: Rswift.Validatable {
       static let title_h_navigation_bar = Rswift.StringResource(key: "title_h_navigation_bar", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Release date: %@
       static let text_hd_release_date = Rswift.StringResource(key: "text_hd_release_date", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Search
+      static let title_search = Rswift.StringResource(key: "title_search", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Top Rated Movies
       static let title_h_top_rated_movies = Rswift.StringResource(key: "title_h_top_rated_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Trending Movies
@@ -411,6 +413,19 @@ struct R: Rswift.Validatable {
 
         let format = NSLocalizedString("text_hd_release_date", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
+      }
+
+      /// Value: Search
+      static func title_search(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("title_search", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "title_search"
+        }
+
+        return NSLocalizedString("title_search", bundle: bundle, comment: "")
       }
 
       /// Value: Top Rated Movies

@@ -8,6 +8,7 @@
 
 // Tab bar
 "title_home" = "Home";
+"title_search" = "Search";
 
 // Home View
 "title_h_navigation_bar" = "Mooviez 🎬";
