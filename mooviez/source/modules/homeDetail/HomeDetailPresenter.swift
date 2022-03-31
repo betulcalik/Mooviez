@@ -14,7 +14,7 @@ class HomeDetailPresenter: HomeDetailPresenterProtocol {
     private let router: HomeDetailRouterProtocol
     private let movie: Movie
     
-    init(view: HomeDetailViewProtocol,
+    init(view: HomeDetailViewProtocol?,
          movie: Movie,
          router: HomeDetailRouterProtocol) {
         self.view = view
@@ -24,6 +24,11 @@ class HomeDetailPresenter: HomeDetailPresenterProtocol {
     
     func load() {
         view?.handleOutput(.showMovieDetail(movie))
+    }
+    
+    func navigateToMovieVideo() {
+        guard let view = view else { return }
+        router.navigateToMovieVideo(with: movie.id, on: view)
     }
     
 }

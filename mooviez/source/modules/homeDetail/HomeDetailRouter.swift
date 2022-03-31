@@ -19,4 +19,10 @@ class HomeDetailRouter: HomeDetailRouterProtocol {
         return view
     }
     
+    func navigateToMovieVideo(with movieId: Int, on view: HomeDetailViewProtocol) {
+        guard let viewController = view as? HomeDetailViewController else { return }
+        guard let videoViewController = HomeVideoRouter.build(with: movieId) as? HomeVideoViewController else { return }
+        
+        viewController.navigationController?.pushViewController(videoViewController, animated: true)
+    }
 }

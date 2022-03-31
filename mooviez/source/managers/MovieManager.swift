@@ -60,4 +60,19 @@ final class MovieManager {
         }
 
     }
+    
+    func getMovieVideo(movieId: Int, completionHandler: @escaping (Result<[MovieVideo], Error>) -> Void) {
+        let movieIdString = String(movieId)
+        let urlString = baseURL + movieIdString + "/videos?api_key=" + apiKey + "&language=" + language
+       
+        apiManager.getRequest(urlString, decodable: MovieVideoResponse.self) { (result) in
+            switch result {
+            case .success(let data):
+                guard let results = data.results else { return }
+                completionHandler(.success(results))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
 }

@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		261DF98ABDDD083296AF3560 /* Pods_mooviez.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16FCF357D03AA017D0D6117B /* Pods_mooviez.framework */; };
 		62252DA527DFC91E00AEDA9C /* VerticalMoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62252DA427DFC91E00AEDA9C /* VerticalMoviesCollectionViewCell.swift */; };
+		6245DC7027F58F47006AEEF9 /* MovieVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6245DC6F27F58F47006AEEF9 /* MovieVideo.swift */; };
+		6245DC7327F59097006AEEF9 /* HomeVideoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6245DC7227F59097006AEEF9 /* HomeVideoProtocols.swift */; };
+		6245DC7527F590A5006AEEF9 /* HomeVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6245DC7427F590A5006AEEF9 /* HomeVideoViewController.swift */; };
+		6245DC7727F590B8006AEEF9 /* HomeVideoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6245DC7627F590B8006AEEF9 /* HomeVideoInteractor.swift */; };
+		6245DC7927F590C1006AEEF9 /* HomeVideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6245DC7827F590C1006AEEF9 /* HomeVideoPresenter.swift */; };
+		6245DC7B27F590CD006AEEF9 /* HomeVideoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6245DC7A27F590CD006AEEF9 /* HomeVideoRouter.swift */; };
 		625F0EC627D54CB200598474 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 625F0EC527D54CB200598474 /* Montserrat-Italic.ttf */; };
 		625F0EC827D54CC000598474 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 625F0EC727D54CC000598474 /* Montserrat-Bold.ttf */; };
 		625F0ECA27D54CD400598474 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 625F0EC927D54CD400598474 /* Montserrat-Regular.ttf */; };
@@ -39,6 +45,12 @@
 		16FCF357D03AA017D0D6117B /* Pods_mooviez.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mooviez.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		282E64F30D3461AE1083175B /* Pods-mooviez.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mooviez.release.xcconfig"; path = "Target Support Files/Pods-mooviez/Pods-mooviez.release.xcconfig"; sourceTree = "<group>"; };
 		62252DA427DFC91E00AEDA9C /* VerticalMoviesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalMoviesCollectionViewCell.swift; sourceTree = "<group>"; };
+		6245DC6F27F58F47006AEEF9 /* MovieVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideo.swift; sourceTree = "<group>"; };
+		6245DC7227F59097006AEEF9 /* HomeVideoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoProtocols.swift; sourceTree = "<group>"; };
+		6245DC7427F590A5006AEEF9 /* HomeVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoViewController.swift; sourceTree = "<group>"; };
+		6245DC7627F590B8006AEEF9 /* HomeVideoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoInteractor.swift; sourceTree = "<group>"; };
+		6245DC7827F590C1006AEEF9 /* HomeVideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoPresenter.swift; sourceTree = "<group>"; };
+		6245DC7A27F590CD006AEEF9 /* HomeVideoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoRouter.swift; sourceTree = "<group>"; };
 		625F0EC527D54CB200598474 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
 		625F0EC727D54CC000598474 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		625F0EC927D54CD400598474 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
@@ -95,6 +107,18 @@
 				16FCF357D03AA017D0D6117B /* Pods_mooviez.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6245DC7127F5907D006AEEF9 /* homeVideo */ = {
+			isa = PBXGroup;
+			children = (
+				6245DC7227F59097006AEEF9 /* HomeVideoProtocols.swift */,
+				6245DC7427F590A5006AEEF9 /* HomeVideoViewController.swift */,
+				6245DC7627F590B8006AEEF9 /* HomeVideoInteractor.swift */,
+				6245DC7827F590C1006AEEF9 /* HomeVideoPresenter.swift */,
+				6245DC7A27F590CD006AEEF9 /* HomeVideoRouter.swift */,
+			);
+			path = homeVideo;
 			sourceTree = "<group>";
 		};
 		625F0EC427D54C9A00598474 /* Fonts */ = {
@@ -190,6 +214,7 @@
 			children = (
 				62B18D5827CB95EC00498EC2 /* home */,
 				62F462C427EF79F7001C7256 /* homeDetail */,
+				6245DC7127F5907D006AEEF9 /* homeVideo */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -220,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				62B18D6927CBAFF300498EC2 /* Movie.swift */,
+				6245DC6F27F58F47006AEEF9 /* MovieVideo.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -391,9 +417,15 @@
 				62C46CE727CC07DB00B88963 /* HorizontalMoviesCollectionViewCell.swift in Sources */,
 				62B18D6227CB962000498EC2 /* HomeRouter.swift in Sources */,
 				62F462C627EF7A14001C7256 /* HomeDetailProtocols.swift in Sources */,
+				6245DC7B27F590CD006AEEF9 /* HomeVideoRouter.swift in Sources */,
 				62F8E5E627DE71DD00BE6178 /* R.generated.swift in Sources */,
 				62B18D4227CB952900498EC2 /* SceneDelegate.swift in Sources */,
 				62B18D6027CB961800498EC2 /* HomePresenter.swift in Sources */,
+				6245DC7327F59097006AEEF9 /* HomeVideoProtocols.swift in Sources */,
+				6245DC7927F590C1006AEEF9 /* HomeVideoPresenter.swift in Sources */,
+				6245DC7527F590A5006AEEF9 /* HomeVideoViewController.swift in Sources */,
+				6245DC7027F58F47006AEEF9 /* MovieVideo.swift in Sources */,
+				6245DC7727F590B8006AEEF9 /* HomeVideoInteractor.swift in Sources */,
 				62B18D5E27CB961000498EC2 /* HomeInteractor.swift in Sources */,
 				62B18D6727CBAEB000498EC2 /* MovieManager.swift in Sources */,
 				62B18D6A27CBAFF300498EC2 /* Movie.swift in Sources */,

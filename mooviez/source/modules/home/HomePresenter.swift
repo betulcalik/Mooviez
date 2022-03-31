@@ -14,7 +14,7 @@ final class HomePresenter: HomePresenterProtocol {
     private let interactor: HomeInteractorProtocol
     private let router: HomeRouterProtocol
     
-    init(view: HomeViewProtocol,
+    init(view: HomeViewProtocol?,
          interactor: HomeInteractorProtocol,
          router: HomeRouterProtocol) {
         self.view = view

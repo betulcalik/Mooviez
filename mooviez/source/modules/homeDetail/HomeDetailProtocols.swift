@@ -17,6 +17,7 @@ protocol HomeDetailViewProtocol: AnyObject {
 // MARK: - Presenter
 protocol HomeDetailPresenterProtocol: AnyObject {
     func load()
+    func navigateToMovieVideo()
 }
 
 enum HomeDetailPresenterOutput {
@@ -26,4 +27,5 @@ enum HomeDetailPresenterOutput {
 // MARK: - Router
 protocol HomeDetailRouterProtocol: AnyObject {
     static func build(with movie: Movie) -> HomeDetailViewProtocol
+    func navigateToMovieVideo(with movieId: Int, on view: HomeDetailViewProtocol)
 }

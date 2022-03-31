@@ -182,7 +182,7 @@ class HomeDetailViewController: UIViewController {
     
     // MARK: - Actions
     @objc func didWatchTrailerTap(_ sender: UIButton) {
-        print("hey you tapped me!")
+        presenter?.navigateToMovieVideo()
     }
  
 }
