@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		261DF98ABDDD083296AF3560 /* Pods_mooviez.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16FCF357D03AA017D0D6117B /* Pods_mooviez.framework */; };
+		620CDB1927F62BD00086AB5E /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620CDB1827F62BD00086AB5E /* TabbarViewController.swift */; };
 		62252DA527DFC91E00AEDA9C /* VerticalMoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62252DA427DFC91E00AEDA9C /* VerticalMoviesCollectionViewCell.swift */; };
 		6245DC7027F58F47006AEEF9 /* MovieVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6245DC6F27F58F47006AEEF9 /* MovieVideo.swift */; };
 		6245DC7327F59097006AEEF9 /* HomeVideoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6245DC7227F59097006AEEF9 /* HomeVideoProtocols.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		16FCF357D03AA017D0D6117B /* Pods_mooviez.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mooviez.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		282E64F30D3461AE1083175B /* Pods-mooviez.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mooviez.release.xcconfig"; path = "Target Support Files/Pods-mooviez/Pods-mooviez.release.xcconfig"; sourceTree = "<group>"; };
+		620CDB1827F62BD00086AB5E /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		62252DA427DFC91E00AEDA9C /* VerticalMoviesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalMoviesCollectionViewCell.swift; sourceTree = "<group>"; };
 		6245DC6F27F58F47006AEEF9 /* MovieVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideo.swift; sourceTree = "<group>"; };
 		6245DC7227F59097006AEEF9 /* HomeVideoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoProtocols.swift; sourceTree = "<group>"; };
@@ -107,6 +109,14 @@
 				16FCF357D03AA017D0D6117B /* Pods_mooviez.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		620CDB1727F62BBD0086AB5E /* main */ = {
+			isa = PBXGroup;
+			children = (
+				620CDB1827F62BD00086AB5E /* TabbarViewController.swift */,
+			);
+			path = main;
 			sourceTree = "<group>";
 		};
 		6245DC7127F5907D006AEEF9 /* homeVideo */ = {
@@ -212,6 +222,7 @@
 		62B18D5727CB95AB00498EC2 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				620CDB1727F62BBD0086AB5E /* main */,
 				62B18D5827CB95EC00498EC2 /* home */,
 				62F462C427EF79F7001C7256 /* homeDetail */,
 				6245DC7127F5907D006AEEF9 /* homeVideo */,
@@ -418,6 +429,7 @@
 				62B18D6227CB962000498EC2 /* HomeRouter.swift in Sources */,
 				62F462C627EF7A14001C7256 /* HomeDetailProtocols.swift in Sources */,
 				6245DC7B27F590CD006AEEF9 /* HomeVideoRouter.swift in Sources */,
+				620CDB1927F62BD00086AB5E /* TabbarViewController.swift in Sources */,
 				62F8E5E627DE71DD00BE6178 /* R.generated.swift in Sources */,
 				62B18D4227CB952900498EC2 /* SceneDelegate.swift in Sources */,
 				62B18D6027CB961800498EC2 /* HomePresenter.swift in Sources */,
