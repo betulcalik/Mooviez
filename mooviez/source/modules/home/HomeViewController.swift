@@ -14,6 +14,14 @@ class HomeViewController: UIViewController {
                                               height: view.frame.height + 400)
     
     // MARK: - UI Components
+    private lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
+        spinner.color = .lightGray
+        return spinner
+    }()
+    
     private lazy var upcomingTitleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -128,6 +136,7 @@ class HomeViewController: UIViewController {
         setView()
         addScrollView()
         addContentStackView()
+        addSpinner()
         addUpcomingMovies()
         addTopRatedMovies()
         addTrendingMovies()
@@ -135,6 +144,7 @@ class HomeViewController: UIViewController {
     
     private func setView() {
         view.backgroundColor = R.color.backgroundColor()
+        spinner.startAnimating()
         setMovies()
         setNavigationBar()
     }
@@ -172,6 +182,14 @@ class HomeViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        ])
+    }
+    
+    private func addSpinner() {
+        view.addSubview(spinner)
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
     
@@ -227,6 +245,7 @@ extension HomeViewController: HomeViewProtocol {
             self.trendingMoviesArray = result
             trendingMovies.reloadData()
         }
+        spinner.stopAnimating()
     }
     
 }

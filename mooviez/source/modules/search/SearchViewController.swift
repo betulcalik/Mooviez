@@ -9,6 +9,12 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    // MARK: - UI Components
+    private lazy var searchController: UISearchController = {
+        let search = UISearchController()
+        return search
+    }()
+    
     // MARK: - Variables
     var presenter: SearchPresenterProtocol?
     
@@ -26,6 +32,7 @@ class SearchViewController: UIViewController {
     
     private func setView() {
         setNavigationBar()
+        setSearchController()
     }
     
     private func setNavigationBar() {
@@ -35,10 +42,30 @@ class SearchViewController: UIViewController {
         ]
         navigationItem.title = R.string.localizable.title_h_navigation_bar()
     }
+    
+    private func setSearchController() {
+        searchController.loadViewIfNeeded()
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.enablesReturnKeyAutomatically = false
+        searchController.searchBar.returnKeyType = .search
+        
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
 
 }
 
 // MARK: - Search View Protocol
 extension SearchViewController: SearchViewProtocol {
+    
+}
+
+// MARK: - Search Results Updating
+extension SearchViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+    }
     
 }

@@ -138,7 +138,7 @@ class HomeDetailViewController: UIViewController {
             movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             movieImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            movieImageView.heightAnchor.constraint(equalToConstant: contentViewSize.height / 2)
+            movieImageView.heightAnchor.constraint(equalToConstant: 500)
         ])
     }
     
