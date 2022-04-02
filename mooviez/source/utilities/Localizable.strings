@@ -20,3 +20,6 @@
 "text_hd_watch_trailer" = "Watch trailer 🍿";
 "text_hd_release_date" = "Release date: %@";
 "text_hd_vote_average" = "Vote average: %.1f";
+
+// Search View
+"text_searchbar_placeholder" = "Search movie";

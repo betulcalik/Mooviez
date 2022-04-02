@@ -10,5 +10,18 @@ import Foundation
 class SearchInteractor: SearchInteractorProtocol {
     
     // MARK: - Variables
+    weak var delegate: SearchInteractorDelegate?
     var presenter: SearchPresenterProtocol?
+    private let movieManager = MovieManager.shared
+    
+    func load() {
+        movieManager.getTopRatedMovies { (result) in
+            switch result {
+            case .success(let data):
+                self.delegate?.handleOutput(.showMovies(data))
+            case .failure(_):
+                break
+            }
+        }
+    }
 }

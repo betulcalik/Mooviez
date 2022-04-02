@@ -353,7 +353,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 9 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 10 localization keys.
     struct localizable {
       /// Value: Home
       static let title_home = Rswift.StringResource(key: "title_home", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -363,6 +363,8 @@ struct R: Rswift.Validatable {
       static let text_hd_release_date = Rswift.StringResource(key: "text_hd_release_date", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Search
       static let title_search = Rswift.StringResource(key: "title_search", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Search movie
+      static let text_searchbar_placeholder = Rswift.StringResource(key: "text_searchbar_placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Top Rated Movies
       static let title_h_top_rated_movies = Rswift.StringResource(key: "title_h_top_rated_movies", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Trending Movies
@@ -426,6 +428,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("title_search", bundle: bundle, comment: "")
+      }
+
+      /// Value: Search movie
+      static func text_searchbar_placeholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("text_searchbar_placeholder", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "text_searchbar_placeholder"
+        }
+
+        return NSLocalizedString("text_searchbar_placeholder", bundle: bundle, comment: "")
       }
 
       /// Value: Top Rated Movies

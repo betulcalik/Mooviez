@@ -20,6 +20,23 @@ class SearchPresenter: SearchPresenterProtocol {
         self.view = view
         self.interactor = interactor
         self.router = router
+        self.interactor.delegate = self
     }
     
+    func load() {
+        interactor.load()
+    }
+    
+}
+
+// MARK: - Search Interactor Delegate
+extension SearchPresenter: SearchInteractorDelegate {
+    
+    func handleOutput(_ output: SearchInteractorOutput) {
+        switch output {
+        case .showMovies(let movies):
+            view?.handleOutput(.showMovies(movies))
+        }
+    }
+
 }

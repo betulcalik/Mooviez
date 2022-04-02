@@ -13,6 +13,7 @@ struct Movie: Codable {
     let backdropPath: String?
     let overview: String
     let releaseDate: String
+    let title: String
     let originalTitle: String
     let voteAverage: Double
     
@@ -22,6 +23,7 @@ struct Movie: Codable {
         case backdropPath = "backdrop_path"
         case overview
         case releaseDate = "release_date"
+        case title
         case originalTitle = "original_title"
         case voteAverage = "vote_average"
     }
