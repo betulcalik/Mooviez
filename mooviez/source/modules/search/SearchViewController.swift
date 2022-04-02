@@ -21,8 +21,9 @@ class SearchViewController: UIViewController {
     private lazy var searchController: UISearchController = {
         let search = UISearchController()
         search.searchResultsUpdater = self
-        search.searchBar.delegate = self
         search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.delegate = self
+        search.searchBar.tintColor = R.color.purpleColor()
         search.searchBar.enablesReturnKeyAutomatically = false
         search.searchBar.returnKeyType = .done
         search.searchBar.placeholder = R.string.localizable.text_searchbar_placeholder()
@@ -41,6 +42,7 @@ class SearchViewController: UIViewController {
     // MARK: - Variables
     var presenter: SearchPresenterProtocol?
     private var movies: [Movie] = []
+    private var filteredMovies: [Movie] = []
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -100,6 +102,15 @@ class SearchViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: movieTableView.centerXAnchor)
         ])
     }
+    
+    // MARK: - Search functions
+    private func isSearchBarEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    private func isMovieFiltering() -> Bool {
+        return searchController.isActive && !(isSearchBarEmpty())
+    }
 
 }
 
@@ -111,6 +122,9 @@ extension SearchViewController: SearchViewProtocol {
         case .showMovies(let result):
             movies = result
             movieTableView.reloadData()
+        case .showSearchedMovies(let result):
+            filteredMovies = result
+            movieTableView.reloadData()
         }
         spinner.stopAnimating()
     }
@@ -121,21 +135,46 @@ extension SearchViewController: SearchViewProtocol {
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
+        guard let text = searchController.searchBar.text, !text.isEmpty else { return }
+        spinner.startAnimating()
+        presenter?.searchMovie(query: text)
     }
     
 }
 
-// MARK: - Table View Delegates & Search Bar Delegate
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+// MARK: - Search Bar Delegate
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if isSearchBarEmpty() { presenter?.load() }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter?.load()
+    }
+    
+}
+
+// MARK: - Table View Delegates
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        presenter?.selectMovie(at: indexPath.row)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isMovieFiltering() { return filteredMovies.count }
         return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchMovieTableViewCell.identifier, for: indexPath) as? SearchMovieTableViewCell else { return UITableViewCell() }
-        cell.configure(with: movies[indexPath.row])
+        if isMovieFiltering() {
+            cell.configure(with: filteredMovies[indexPath.row])
+        } else {
+            cell.configure(with: movies[indexPath.row])
+        }
         return cell
     }
     

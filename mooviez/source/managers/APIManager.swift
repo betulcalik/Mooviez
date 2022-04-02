@@ -13,8 +13,8 @@ final class APIManager {
     static let shared = APIManager()
 
     // MARK: - API Requests
-    func getRequest<T: Decodable>(_ urlString: String, decodable: T.Type, completionHandler: @escaping (Result<T, Error>) -> Void) {
-        let request = AF.request(urlString, method: .get)
+    func getRequest<T: Decodable>(_ urlString: String, decodable: T.Type, parameters: Parameters?, completionHandler: @escaping (Result<T, Error>) -> Void) {
+        let request = AF.request(urlString, method: .get, parameters: parameters)
         
         request.validate()
             .responseDecodable(of: decodable) { (response) in

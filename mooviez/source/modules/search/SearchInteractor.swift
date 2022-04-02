@@ -15,6 +15,10 @@ class SearchInteractor: SearchInteractorProtocol {
     private let movieManager = MovieManager.shared
     
     func load() {
+        getTopRatedMovies()
+    }
+    
+    func getTopRatedMovies() {
         movieManager.getTopRatedMovies { (result) in
             switch result {
             case .success(let data):
@@ -24,4 +28,16 @@ class SearchInteractor: SearchInteractorProtocol {
             }
         }
     }
+    
+    func getSearchedMovies(query: String) {
+        movieManager.getSearchMovie(query: query) { (result) in
+            switch result {
+            case .success(let data):
+                self.delegate?.handleOutput(.showSearchedMovies(data))
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
 }

@@ -19,4 +19,11 @@ class SearchRouter: SearchRouterProtocol {
         view.presenter = presenter
         return view
     }
+    
+    func navigateToDetail(with movie: Movie, on view: SearchViewProtocol) {
+        guard let viewController = view as? SearchViewController else { return }
+        guard let detailViewController = HomeDetailRouter.build(with: movie) as? HomeDetailViewController else { return }
+        
+        viewController.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }

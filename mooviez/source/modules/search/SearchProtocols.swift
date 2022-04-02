@@ -20,6 +20,8 @@ protocol SearchInteractorProtocol: AnyObject {
     var presenter: SearchPresenterProtocol? { get set }
     
     func load()
+    func getTopRatedMovies()
+    func getSearchedMovies(query: String)
 }
 
 protocol SearchInteractorDelegate: AnyObject {
@@ -28,18 +30,23 @@ protocol SearchInteractorDelegate: AnyObject {
 
 enum SearchInteractorOutput {
     case showMovies([Movie])
+    case showSearchedMovies([Movie])
 }
 
 // MARK: - Presenter
 protocol SearchPresenterProtocol: AnyObject {
     func load()
+    func searchMovie(query: String)
+    func selectMovie(at index: Int)
 }
 
 enum SearchPresenterOutput {
     case showMovies([Movie])
+    case showSearchedMovies([Movie])
 }
 
 // MARK: - Router
 protocol SearchRouterProtocol: AnyObject {
     static func build() -> SearchViewProtocol
+    func navigateToDetail(with movie: Movie, on view: SearchViewProtocol)
 }
