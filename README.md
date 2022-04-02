@@ -9,7 +9,7 @@
   <p align="center">
     This repository contains an iOS project that can show and search movies and their Youtube trailer videos with VIPER architectural design pattern.
     <br />
-    <a href="https://github.com/betulcalik/quick-draw-ios/tree/main/mooviez"><strong>Explore the project »</strong></a>
+    <a href="https://github.com/betulcalik/mooviez/tree/main/mooviez"><strong>Explore the project »</strong></a>
     <br />
     <br />
     <a href="https://github.com/betulcalik/mooviez/issues">Report Bug</a>
