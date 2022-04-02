@@ -36,7 +36,9 @@
 ### 2. Application Overview
 
 Home:
+
 <img src="https://github.com/betulcalik/mooviez/blob/main/images/home.gif" alt="Home Module" height="400">
 
 Search:
+
 <img src="https://github.com/betulcalik/mooviez/blob/main/images/search.gif" alt="Search Module" height="400">
